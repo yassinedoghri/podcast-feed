@@ -1,0 +1,38 @@
+{
+    "name": "yassinedoghri/podcast-feed",
+    "version": "1.0.0-dev",
+    "description": "A robust podcast feed parser and validator written in PHP.",
+    "license": "AGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Yassine Doghri",
+            "email": "yassine@doghri.fr",
+            "homepage": "https://yassinedoghri.com",
+            "role": "Maintainer"
+        }
+    ],
+    "type": "library",
+    "require": {
+        "php": ">=8.1",
+        "ext-intl" : "*"
+    },
+    "require-dev": {
+        "kint-php/kint": "^5.0",
+        "phpstan/phpstan": "^1.10",
+        "rector/rector": "^0.17.0",
+        "symplify/coding-standard": "^11.3",
+        "symplify/easy-coding-standard": "^11.3"
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse --ansi",
+        "rector": "vendor/bin/rector process --dry-run --ansi",
+        "rector:fix": "vendor/bin/rector process --ansi",
+        "style": "vendor/bin/ecs check --ansi",
+        "style:fix": "vendor/bin/ecs check --fix --ansi"
+    },
+    "autoload": {
+        "psr-4": {
+            "PodcastFeed\\": "src/"
+        }
+    }
+}
