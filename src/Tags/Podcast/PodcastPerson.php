@@ -27,6 +27,6 @@ class PodcastPerson extends Tag
 
     protected array $_attributesDefaultValues = [
         'role' => 'Host',
-        'group' => 'Cast'
+        'group' => 'Cast',
     ];
 }
