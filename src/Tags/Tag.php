@@ -304,19 +304,27 @@ abstract class Tag implements TagInterface
         return self::$_errors;
     }
 
-    public function getValue(): mixed
+    public function getValue(mixed $default = null): mixed
     {
-        if ($this->_value === null) {
-            return $this->_defaultValue;
+        if ($this->_value !== null) {
+            return $this->_value;
         }
 
-        return $this->_value;
+        if ($default !== null) {
+            return $default;
+        }
+
+        return $this->_defaultValue;
     }
 
-    public function getAttribute(string $key): mixed
+    public function getAttribute(string $key, mixed $default = null): mixed
     {
         if (in_array($key, $this->_attributes, true)) {
             return $this->_attributes[$key];
+        }
+
+        if ($default !== null) {
+            return $default;
         }
 
         // check if in allowed attributes
