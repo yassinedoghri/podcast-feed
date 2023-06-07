@@ -7,6 +7,9 @@ namespace PodcastFeed\Tags\Podcast;
 use PodcastFeed\Enums\Validator;
 use PodcastFeed\Tags\Tag;
 
+/**
+ * @property PodcastRemoteItem $podcast_remoteItem
+ */
 class PodcastValueTimeSplit extends Tag
 {
     protected const NAME = 'podcast:valueTimeSplit';
@@ -17,7 +20,7 @@ class PodcastValueTimeSplit extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'value_recipients';
+    protected ?string $_plural = 'podcast_valueTimeSplits';
 
     protected array $_allowedAttributes = ['startTime', 'duration', 'remotePercentage'];
 

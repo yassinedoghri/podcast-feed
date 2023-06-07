@@ -18,7 +18,7 @@ class PodcastBlock extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plurals = 'blocks';
+    protected ?string $_plural = 'podcast_blocks';
 
     protected array $_allowedAttributes = ['id'];
 

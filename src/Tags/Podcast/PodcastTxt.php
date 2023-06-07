@@ -17,7 +17,7 @@ class PodcastTxt extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plurals = 'txts';
+    protected ?string $_plurals = 'podcast_txts';
 
     protected array $_allowedAttributes = ['purpose'];
 

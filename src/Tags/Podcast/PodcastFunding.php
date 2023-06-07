@@ -14,7 +14,7 @@ class PodcastFunding extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'fundings';
+    protected ?string $_plural = 'podcast_fundings';
 
     protected array $_allowedParents = [Channel::class];
 

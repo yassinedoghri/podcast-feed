@@ -13,7 +13,7 @@ class PodcastId extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'ids';
+    protected ?string $_plural = 'podcast_ids';
 
     protected array $_allowedParents = [Channel::class];
 

@@ -7,13 +7,16 @@ namespace PodcastFeed\Tags\Podcast;
 use PodcastFeed\Tags\RSS\Channel;
 use PodcastFeed\Tags\Tag;
 
+/**
+ * @property PodcastSocialSignUp $podcast_socialSignUp
+ */
 class PodcastSocial extends Tag
 {
     protected const NAME = 'podcast:social';
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'socials';
+    protected ?string $_plural = 'podcast_socials';
 
     protected array $_allowedParents = [Channel::class];
 

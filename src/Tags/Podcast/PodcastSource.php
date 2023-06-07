@@ -15,7 +15,7 @@ class PodcastSource extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'sources';
+    protected ?string $_plural = 'podcast_sources';
 
     protected array $_allowedAttributes = ['uri', 'contentType'];
 

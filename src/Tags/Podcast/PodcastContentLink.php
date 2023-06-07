@@ -15,7 +15,7 @@ class PodcastContentLink extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'content_links';
+    protected ?string $_plural = 'podcast_contentLinks';
 
     protected array $_validationRules = [Validator::NotEmpty];
 

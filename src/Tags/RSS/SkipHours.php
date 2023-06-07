@@ -6,6 +6,9 @@ namespace PodcastFeed\Tags\RSS;
 
 use PodcastFeed\Tags\Tag;
 
+/**
+ * @property Hour[] $hours
+ */
 class SkipHours extends Tag
 {
     protected const NAME = 'skipHours';

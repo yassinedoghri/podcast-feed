@@ -14,7 +14,7 @@ class PodcastTranscript extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'transcripts';
+    protected ?string $_plural = 'podcast_transcripts';
 
     protected array $_allowedParents = [Item::class];
 

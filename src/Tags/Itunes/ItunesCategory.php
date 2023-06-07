@@ -7,9 +7,16 @@ namespace PodcastFeed\Tags\Itunes;
 use PodcastFeed\Tags\RSS\Channel;
 use PodcastFeed\Tags\Tag;
 
+/**
+ * @property ItunesCategory $itunes_category
+ */
 class ItunesCategory extends Tag
 {
     protected const NAME = 'itunes:category';
+
+    protected bool $_multiple = true;
+
+    protected ?string $_plural = 'itunes_categories';
 
     protected array $_allowedParents = [Channel::class, self::class];
 

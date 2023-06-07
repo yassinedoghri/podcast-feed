@@ -14,7 +14,7 @@ class PodcastRemoteItem extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'remoteItems';
+    protected ?string $_plural = 'podcast_remoteItems';
 
     protected array $_allowedParents = [Channel::class, PodcastPodroll::class, PodcastValueTimeSplit::class];
 

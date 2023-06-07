@@ -13,6 +13,8 @@ class ItunesBlock extends Tag
 {
     protected const NAME = 'itunes:block';
 
+    protected mixed $_defaultValue = false;
+
     protected array $_allowedParents = [Channel::class, Item::class];
 
     protected Cast $_cast = Cast::Boolean;

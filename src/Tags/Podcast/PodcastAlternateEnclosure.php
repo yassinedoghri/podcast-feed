@@ -8,13 +8,17 @@ use PodcastFeed\Enums\Validator;
 use PodcastFeed\Tags\RSS\Item;
 use PodcastFeed\Tags\Tag;
 
+/**
+ * @property PodcastSource $podcast_source
+ * @property PodcastIntegrity $podcast_integrity
+ */
 class PodcastAlternateEnclosure extends Tag
 {
     protected const NAME = 'podcast:alternateEnclosure';
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'alternate_enclosures';
+    protected ?string $_plural = 'podcast_alternateEnclosures';
 
     protected array $_allowedParents = [Item::class];
 

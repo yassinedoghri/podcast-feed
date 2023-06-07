@@ -14,7 +14,7 @@ class PodcastSocialInteract extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'social_interacts';
+    protected ?string $_plural = 'podcast_socialInteracts';
 
     protected array $_allowedParents = [Item::class];
 

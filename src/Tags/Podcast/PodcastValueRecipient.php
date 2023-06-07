@@ -15,7 +15,7 @@ class PodcastValueRecipient extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'value_recipients';
+    protected ?string $_plural = 'podcast_valueRecipients';
 
     protected array $_allowedAttributes = ['type', 'address', 'split', 'name', 'customKey', 'customValue', 'fee'];
 

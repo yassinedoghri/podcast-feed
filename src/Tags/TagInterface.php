@@ -14,5 +14,5 @@ interface TagInterface
     /**
      * @param class-string<Tag>[] $ascendants
      */
-    public function __construct(string $key, SimpleXMLElement $element, array $ascendants = []);
+    public function __construct(string $key, ?SimpleXMLElement $element, array $ascendants = []);
 }

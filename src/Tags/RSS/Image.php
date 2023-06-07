@@ -6,6 +6,14 @@ namespace PodcastFeed\Tags\RSS;
 
 use PodcastFeed\Tags\Tag;
 
+/**
+ * @property Url $url,
+ * @property Title $title,
+ * @property Link $link,
+ * @property Width $width,
+ * @property Height $height,
+ * @property Description $description,
+ */
 class Image extends Tag
 {
     protected const NAME = 'image';
