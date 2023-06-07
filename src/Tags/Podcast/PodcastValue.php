@@ -9,6 +9,10 @@ use PodcastFeed\Tags\RSS\Channel;
 use PodcastFeed\Tags\RSS\Item;
 use PodcastFeed\Tags\Tag;
 
+/**
+ * @property PodcastValueRecipient $podcast_valueRecipient
+ * @property PodcastValueTimeSplit $podcast_valueTimeSplit
+ */
 class PodcastValue extends Tag
 {
     protected const NAME = 'podcast:value';
@@ -17,7 +21,7 @@ class PodcastValue extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'value';
+    protected ?string $_plural = 'podcast_value';
 
     protected array $_allowedChildren = [PodcastValueRecipient::class, PodcastValueTimeSplit::class];
 

@@ -14,7 +14,7 @@ class PodcastSoundbite extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'soundbites';
+    protected ?string $_plural = 'podcast_soundbites';
 
     protected array $_allowedParents = [Item::class];
 

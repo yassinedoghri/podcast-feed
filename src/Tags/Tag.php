@@ -72,10 +72,17 @@ abstract class Tag implements TagInterface
 
     protected mixed $_value = null;
 
+    protected mixed $_defaultValue = null;
+
     /**
      * @var array<string, mixed>
      */
     protected array $_attributes = [];
+
+    /**
+     * @var array<string, mixed>
+     */
+    protected array $_attributesDefaultValues = [];
 
     protected bool $_multiple = false;
 
@@ -187,7 +194,7 @@ abstract class Tag implements TagInterface
      */
     public function __construct(
         string $key,
-        SimpleXMLElement $element,
+        ?SimpleXMLElement $element,
         private array $_ascendants = [Rss::class]
     ) {
         if (array_key_exists($this::NAME, self::$_counts)) {
@@ -203,42 +210,77 @@ abstract class Tag implements TagInterface
         $this->_key = $key;
         $this->_childrenCount = 0;
 
-        $node = dom_import_simplexml($element);
-        $this->_lineNumber = $node->getLineNo();
+        if ($element instanceof SimpleXMLElement) {
+            $node = dom_import_simplexml($element);
+            $this->_lineNumber = $node->getLineNo();
 
-        $this->traverse($element);
+            $this->traverse($element);
 
-        if ($this->_childrenCount === 0) {
-            $rawValue = trim((string) $element);
-            $this->validate($rawValue);
-            $this->_value = $this->cast($rawValue, $this->_cast);
-        }
+            // set not traversed children to default
+            $allowedChildrenNotPresent = array_diff($this->_allowedChildren, $this->_children);
 
-        if ($element->attributes() instanceof SimpleXMLElement) {
-            $attributes = $element->attributes();
-            foreach ($attributes as $key => $element) {
-                $rawValue = trim((string) $element);
-                $this->validateAttribute($key, $rawValue);
-                $this->_attributes[$key] = $this->cast($rawValue, $this->_attributesCast[$key] ?? Cast::String);
+            foreach ($allowedChildrenNotPresent as $tagClassName) {
+                $tagProperty = str_replace(':', '_', str_replace('-', '', lcfirst(ucwords($tagClassName::NAME, '-'))));
+
+                if (! class_exists($tagClassName)) {
+                    $tagClassName = UnknownTag::class;
+                    $this->warn('Unknown tag in ' . $this::NAME);
+                }
+
+                $ascendants = [...$this->_ascendants, static::class];
+
+                /** @var Tag $tagObject */
+                $tagObject = new $tagClassName($tagProperty, null, $ascendants);
+
+                if ($tagObject->_multiple) {
+                    if ($tagObject->_plural === null) {
+                        throw new Exception("_plural property is not set for: " . $tagClassName);
+                    }
+
+                    $this->{$tagObject->_plural} = [];
+                } else {
+                    $this->{$tagProperty} = $tagObject;
+                }
             }
-        }
 
-        $this->validateChildren();
+            if ($this->_childrenCount === 0) {
+                $rawValue = trim((string) $element);
+                $this->validate($rawValue);
+                $this->_value = $this->cast($rawValue, $this->_cast);
+            }
+
+            if ($element->attributes() instanceof SimpleXMLElement) {
+                $attributes = $element->attributes();
+                foreach ($attributes as $key => $element) {
+                    $rawValue = trim((string) $element);
+                    $this->validateAttribute($key, $rawValue);
+                    $this->_attributes[$key] = $this->cast($rawValue, $this->_attributesCast[$key] ?? Cast::String);
+                }
+            }
+
+            $this->validateChildren();
+        }
     }
 
-    /** @return class-string<Tag>[] */
+    /**
+     * @return class-string<Tag>[]
+     */
     protected function getAllowedParents(): array
     {
         return $this->_allowedParents;
     }
 
-    /** @return class-string<Tag>[] */
+    /**
+     * @return class-string<Tag>[]
+     */
     protected function getAllowedChildren(): array
     {
         return $this->_allowedChildren;
     }
 
-    /** @return string[] */
+    /**
+     * @return string[]
+     */
     protected function getAllowedAttributes(): array
     {
         return $this->_allowedAttributes;
@@ -264,7 +306,10 @@ abstract class Tag implements TagInterface
 
     public function getValue(): mixed
     {
-        // return default if defined
+        if ($this->_value === null) {
+            return $this->_defaultValue;
+        }
+
         return $this->_value;
     }
 
@@ -277,6 +322,10 @@ abstract class Tag implements TagInterface
         // check if in allowed attributes
         if (in_array($key, $this->_allowedAttributes, true)) {
             // return default if present
+            if (in_array($key, array_keys($this->_attributesDefaultValues))) {
+                return $this->_attributesDefaultValues[$key];
+            }
+
             return null;
         }
 
@@ -362,8 +411,11 @@ abstract class Tag implements TagInterface
                 $tagObject = new $tagClassName($tagProperty, $element, $ascendants);
 
                 if ($tagObject->_multiple) {
-                    $multiplePropertyName = implode('_', array_filter([$namespace['prefix'], $tagObject->_plural]));
-                    $this->{$multiplePropertyName}[$tagObject->_key] = $tagObject;
+                    if ($tagObject->_plural === null) {
+                        throw new Exception("_plural property is not set for: " . $tagClassName);
+                    }
+
+                    $this->{$tagObject->_plural}[$tagObject->_key] = $tagObject;
                 } else {
                     $this->{$tagProperty} = $tagObject;
                 }

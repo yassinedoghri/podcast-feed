@@ -13,7 +13,7 @@ class AtomLink extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'links';
+    protected ?string $_plural = 'atom_links';
 
     protected array $_allowedParents = [Channel::class];
 

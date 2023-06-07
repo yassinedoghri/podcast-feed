@@ -12,6 +12,8 @@ class PodcastLocked extends Tag
 {
     protected const NAME = 'podcast:locked';
 
+    protected mixed $_defaultValue = false;
+
     protected array $_allowedParents = [Channel::class];
 
     protected Cast $_cast = Cast::Boolean;

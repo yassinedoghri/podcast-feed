@@ -6,6 +6,9 @@ namespace PodcastFeed\Tags\RSS;
 
 use PodcastFeed\Tags\Tag;
 
+/**
+ * @property Channel $channel
+ */
 class Rss extends Tag
 {
     protected const NAME = 'rss';

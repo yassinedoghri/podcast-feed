@@ -27,6 +27,41 @@ use PodcastFeed\Tags\Podcast\PodcastTranscript;
 use PodcastFeed\Tags\Podcast\PodcastValue;
 use PodcastFeed\Tags\Tag;
 
+/**
+ * @property Title $title,
+ * @property Description $description,
+ * @property Enclosure $enclosure,
+ * @property Guid $guid,
+ * @property Image $image,
+ * @property PubDate $pubDate,
+ * @property Link $link,
+ * @property Author $author,
+ * @property Category $category,
+ * @property Comments $comments,
+ * @property Source $source,
+ * @property ItunesAuthor $itunes_author,
+ * @property ItunesTitle $itunes_title,
+ * @property ItunesImage $itunes_image,
+ * @property ItunesSummary $itunes_summary,
+ * @property ItunesSubtitle $itunes_subtitle,
+ * @property ItunesKeywords $itunes_keywords,
+ * @property ItunesEpisodeType $itunes_episodeType,
+ * @property ItunesEpisode $itunes_episode,
+ * @property ItunesSeason $itunes_season,
+ * @property ItunesDuration $itunes_duration,
+ * @property ItunesExplicit $itunes_explicit,
+ * @property ItunesBlock $itunes_block,
+ * @property ContentEncoded $content_encoded,
+ * @property PodcastLocation $podcast_location,
+ * @property PodcastComments $podcast_comments,
+ * @property PodcastSocialInteract $podcast_social_interact,
+ * @property PodcastChapters $podcast_chapters,
+ * @property PodcastImages $podcast_images,
+ *
+ * @property PodcastTranscript[] $podcast_transcripts,
+ * @property PodcastPerson[] $podcast_persons,
+ * @property PodcastValue[] $podcast_values,
+ */
 class Item extends Tag
 {
     protected const NAME = 'item';
@@ -45,7 +80,6 @@ class Item extends Tag
         Image::class,
         PubDate::class,
         Link::class,
-        Image::class,
         Author::class,
         Category::class,
         Comments::class,

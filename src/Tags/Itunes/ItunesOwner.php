@@ -7,6 +7,10 @@ namespace PodcastFeed\Tags\Itunes;
 use PodcastFeed\Tags\RSS\Channel;
 use PodcastFeed\Tags\Tag;
 
+/**
+ * @property ItunesName $itunes_name
+ * @property ItunesEmail $itunes_email
+ */
 class ItunesOwner extends Tag
 {
     protected const NAME = 'itunes:owner';

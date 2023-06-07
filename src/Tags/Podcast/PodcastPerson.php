@@ -15,7 +15,7 @@ class PodcastPerson extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'persons';
+    protected ?string $_plural = 'podcast_persons';
 
     protected array $_allowedParents = [Channel::class, Item::class];
 
@@ -24,4 +24,9 @@ class PodcastPerson extends Tag
     protected array $_allowedAttributes = ['name', 'url', 'imageUrl', 'role', 'group'];
 
     protected array $_requiredAttributes = ['url', 'type'];
+
+    protected array $_attributesDefaultValues = [
+        'role' => 'Host',
+        'group' => 'Cast'
+    ];
 }

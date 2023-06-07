@@ -15,7 +15,7 @@ class PodcastSocialSignUp extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'social_signups';
+    protected ?string $_plural = 'podcast_socialSignUps';
 
     protected array $_allowedAttributes = ['homeUrl', 'signupUrl', 'priority'];
 

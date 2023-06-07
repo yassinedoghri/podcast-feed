@@ -34,23 +34,54 @@ use PodcastFeed\Tags\Podcast\PodcastValue;
 use PodcastFeed\Tags\Tag;
 
 /**
- * @property Item[] $items
- * @property Title $title
- * @property Link $link
- * @property Language $language
- * @property Copyright $copyright
- * @property LastBuildDate $lastBuildDate
  * @property Category $category
+ * @property Cloud $cloud
+ * @property Copyright $copyright
+ * @property Description $description
+ * @property Docs $docs
  * @property Generator $generator
  * @property Image $image
- * @property Category $itunes_category
- * @property ItunesExplicit $itunes_explicit
  * @property ItunesAuthor $itunes_author
- * @property ItunesOwner $itunes_owner
- * @property ItunesType $itunes_type
- * @property ItunesNewFeedUrl $itunes_newFeedUrl
  * @property ItunesBlock $itunes_block
  * @property ItunesComplete $itunes_complete
+ * @property ItunesExplicit $itunes_explicit
+ * @property ItunesImage $itunes_image
+ * @property ItunesNewFeedUrl $itunes_newFeedUrl
+ * @property ItunesOwner $itunes_owner
+ * @property ItunesSubtitle $itunes_subtitle
+ * @property ItunesSummary $itunes_summary
+ * @property ItunesType $itunes_type
+ * @property Language $language
+ * @property LastBuildDate $lastBuildDate
+ * @property Link $link
+ * @property ManagingEditor $managingEditor
+ * @property ItunesKeywords $itunes_keywords
+ * @property PodcastMedium $podcast_medium
+ * @property PodcastImages $podcast_images
+ * @property PodcastBlock $podcast_block
+ * @property PodcastComplete $podcast_complete
+ * @property PodcastGuid $podcast_guid
+ * @property PodcastId $podcast_id
+ * @property PodcastLocation $podcast_location
+ * @property PodcastLocked $podcast_locked
+ * @property PodcastPreviousUrl $podcast_previousUrl
+ * @property PodcastSocial $podcast_social
+ * @property PodcastValue $podcast_value
+ * @property PubDate $pub_date
+ * @property Rating $rating
+ * @property SkipDays $skip_days
+ * @property SkipHours $skip_hours
+ * @property TextInput $text_input
+ * @property Title $title
+ * @property Ttl $ttl
+ * @property WebMaster $webMaster
+ *
+ * @property AtomLink[] $atom_links
+ * @property Item[] $items
+ * @property ItunesCategory[] $itunes_categories
+ * @property PodcastLiveItem[] $podcast_liveItems
+ * @property PodcastFunding[] $podcast_fundings
+ * @property PodcastPerson[] $podcast_persons
  */
 class Channel extends Tag
 {

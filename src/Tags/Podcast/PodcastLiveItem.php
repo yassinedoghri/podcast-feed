@@ -14,7 +14,7 @@ class PodcastLiveItem extends Item
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'live_items';
+    protected ?string $_plural = 'podcast_liveItems';
 
     protected array $_allowedAttributes = ['status', 'start', 'end'];
 
@@ -28,7 +28,7 @@ class PodcastLiveItem extends Item
 
     public function __construct(
         string $key,
-        SimpleXMLElement $element,
+        ?SimpleXMLElement $element,
         private readonly array $_ascendants = []
     ) {
         $this->_allowedChildren = array_merge($this->_allowedChildren, [

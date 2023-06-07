@@ -14,7 +14,7 @@ class PodcastTrailer extends Tag
 
     protected bool $_multiple = true;
 
-    protected ?string $_plural = 'trailers';
+    protected ?string $_plural = 'podcast_trailers';
 
     protected array $_allowedParents = [Channel::class];
 

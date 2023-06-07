@@ -12,6 +12,8 @@ class ItunesEpisodeType extends Tag
 {
     protected const NAME = 'itunes:episodeType';
 
+    protected mixed $_defaultValue = 'full';
+
     protected array $_allowedParents = [Item::class];
 
     protected array $_validationRules = [Validator::NotEmpty, [Validator::InList, ['trailer', 'full', 'bonus']]];
