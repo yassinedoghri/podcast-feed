@@ -6,6 +6,7 @@ namespace PodcastFeed\Tags;
 
 use AllowDynamicProperties;
 use Exception;
+use PodcastFeed\Cast\BaseCast;
 use PodcastFeed\Cast\BooleanCast;
 use PodcastFeed\Cast\CastInterface;
 use PodcastFeed\Cast\DatetimeCast;
@@ -34,22 +35,6 @@ use PodcastFeed\Validators\ValidURL;
 use PodcastFeed\Validators\ValidUUIDv5;
 use SimpleXMLElement;
 
-/**
- * @property TagMetadata $_metadata;
- * @property mixed $_value;
- * @property Cast $_cast;
- * @property array<string, mixed> $attributes;
- * @property array<string, Cast> $_attributesCast;
- * @property Validator[] $_validationRules;
- * @property array<string, array<string>> $_warnings;
- * @property array<string, array<string>> $_errors;
- * @property string[] $_allowedChildren;
- * @property string[] $_recommendedChildren;
- * @property string[] $_requiredChildren;
- * @property string[] $_allowedAttributes;
- * @property string[] $_recommendedAttributes;
- * @property string[] $_requiredAttributes;
- */
 #[AllowDynamicProperties]
 abstract class Tag implements TagInterface
 {
@@ -157,7 +142,7 @@ abstract class Tag implements TagInterface
     /**
      * Default convert handlers
      *
-     * @var array<string, string>
+     * @var array<string, class-string<BaseCast>>
      */
     private array $_defaultCastHandlers = [
         'boolean' => BooleanCast::class,
@@ -170,7 +155,7 @@ abstract class Tag implements TagInterface
 
     /**
      * Default validation handlers
-     * @var array<string, string>
+     * @var array<string, class-string<ValidatorInterface>>
      */
     private array $_defaultValidationHandlers = [
         'boolean' => Boolean::class,

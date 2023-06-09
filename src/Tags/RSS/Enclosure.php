@@ -8,11 +8,6 @@ use PodcastFeed\Enums\Cast;
 
 use PodcastFeed\Tags\Tag;
 
-/**
- * @property string $url;
- * @property string $type;
- * @property int $length;
- */
 class Enclosure extends Tag
 {
     protected const NAME = 'enclosure';
