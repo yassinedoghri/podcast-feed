@@ -14,7 +14,7 @@ class ItunesImage extends Tag
 
     protected array $_allowedParents = [Channel::class, Item::class];
 
-    protected array $_allowedAttributes = ['url'];
+    protected array $_allowedAttributes = ['href'];
 
-    protected array $_requiredAttributes = ['url'];
+    protected array $_requiredAttributes = ['href'];
 }
