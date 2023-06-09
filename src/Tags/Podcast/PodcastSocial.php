@@ -22,7 +22,7 @@ class PodcastSocial extends Tag
 
     protected array $_allowedChildren = [PodcastSocialSignUp::class];
 
-    protected array $_allowedAttributes = ['platform', 'id', 'url'];
+    protected array $_allowedAttributes = ['platform', 'accountId', 'accountUrl', 'priority', 'protocol'];
 
-    protected array $_requiredAttributes = ['platform'];
+    protected array $_requiredAttributes = ['platform', 'accountUrl'];
 }

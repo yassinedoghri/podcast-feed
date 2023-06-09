@@ -11,4 +11,6 @@ class Guid extends Tag
     protected const NAME = 'guid';
 
     protected array $_allowedParents = [Item::class];
+
+    protected array $_allowedAttributes = ['isPermaLink'];
 }

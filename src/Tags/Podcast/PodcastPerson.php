@@ -21,9 +21,7 @@ class PodcastPerson extends Tag
 
     protected array $_validationRules = [Validator::NotEmpty, [Validator::MaxLength, [128]]];
 
-    protected array $_allowedAttributes = ['name', 'url', 'imageUrl', 'role', 'group'];
-
-    protected array $_requiredAttributes = ['url', 'type'];
+    protected array $_allowedAttributes = ['role', 'group', 'img', 'href'];
 
     protected array $_attributesDefaultValues = [
         'role' => 'Host',
