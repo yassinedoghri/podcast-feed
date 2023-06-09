@@ -244,6 +244,7 @@ abstract class Tag implements TagInterface
             }
 
             $this->validateChildren();
+            $this->validateAttributes();
         }
     }
 
@@ -276,7 +277,6 @@ abstract class Tag implements TagInterface
      */
     public function getWarnings(): array
     {
-        // @phpstan-ignore-next-line
         return self::$_warnings;
     }
 
@@ -285,7 +285,6 @@ abstract class Tag implements TagInterface
      */
     public function getErrors(): array
     {
-        // @phpstan-ignore-next-line
         return self::$_errors;
     }
 
@@ -304,11 +303,6 @@ abstract class Tag implements TagInterface
 
     public function getAttribute(string $key, mixed $default = null): mixed
     {
-        // check if requested attribute is allowed
-        if (! in_array($key, $this->_allowedAttributes, true)) {
-            throw new Exception('"' . $key . '" attribute is not allowed for ' . $this::NAME . ' tag.');
-        }
-
         if (in_array($key, array_keys($this->_attributes), true)) {
             return $this->_attributes[$key];
         }
@@ -424,13 +418,11 @@ abstract class Tag implements TagInterface
 
     private function error(Error|string $message, ?string $attribute = null): void
     {
-        // @phpstan-ignore-next-line
         self::$_errors[$this->_key][] = $this->getMessage($message, $attribute);
     }
 
     private function warn(Error|string $message, ?string $attribute = null): void
     {
-        // @phpstan-ignore-next-line
         self::$_warnings[$this->_key][] = $this->getMessage($message, $attribute);
     }
 
@@ -486,7 +478,7 @@ abstract class Tag implements TagInterface
             $validationHandlerInstance = new $validationHandler();
 
             if (! $validationHandlerInstance->isValid($value, $validator[1])) {
-                $this->error('Invalid value ' . $value . ' for ' . $attribute . ' attribute in ' . self::NAME);
+                $this->error('Invalid value ' . $value . ' for "' . $attribute . '" attribute in ' . $this::NAME);
             }
         }
     }
@@ -504,7 +496,7 @@ abstract class Tag implements TagInterface
             $validationHandlerInstance = new $validationHandler();
 
             if (! $validationHandlerInstance->isValid($value, $validator[1])) {
-                $this->error('Invalid value ' . $value . ' for ' . self::NAME);
+                $this->error('Invalid value ' . $value . ' for ' . $this::NAME);
             }
         }
     }
@@ -519,7 +511,6 @@ abstract class Tag implements TagInterface
         }
 
         if (! $isParentAllowed) {
-            d($this->_allowedParents, $this->getParent());
             $this->error($this::NAME . ' cannot have ' . $this->getParent()::NAME . ' as parent.');
         }
 
@@ -538,6 +529,27 @@ abstract class Tag implements TagInterface
         foreach ($this->_recommendedChildren as $recommendedChild) {
             if (! in_array($recommendedChild, $this->_children, true)) {
                 $this->warn($recommendedChild::NAME . ' is recommended as a child of ' . $this::NAME);
+            }
+        }
+    }
+
+    private function validateAttributes(): void
+    {
+        foreach (array_keys($this->_attributes) as $attribute) {
+            if (! in_array($attribute, $this->_allowedAttributes)) {
+                $this->error('"' . $attribute . '" is not allowed for ' . $this::NAME);
+            }
+        }
+
+        foreach ($this->_requiredAttributes as $requiredAttribute) {
+            if (! in_array($requiredAttribute, array_keys($this->_attributes))) {
+                $this->error('Missing required attribute "' . $requiredAttribute . '" for ' . $this::NAME);
+            }
+        }
+
+        foreach ($this->_recommendedAttributes as $recommendedAttribute) {
+            if (! in_array($recommendedAttribute, array_keys($this->_attributes))) {
+                $this->warn('"' . $recommendedAttribute . '" is recommended as an attribute of ' . $this::NAME);
             }
         }
     }

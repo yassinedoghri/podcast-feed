@@ -18,9 +18,9 @@ class PodcastFunding extends Tag
 
     protected array $_allowedParents = [Channel::class];
 
-    protected array $_allowedAttributes = ['platform', 'url'];
+    protected array $_allowedAttributes = ['url'];
 
-    protected array $_requiredAttributes = ['platform', 'url'];
+    protected array $_requiredAttributes = ['url'];
 
     protected array $_validationRules = [Validator::NotEmpty, [Validator::MaxLength, [128]]];
 }

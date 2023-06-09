@@ -17,11 +17,11 @@ class PodcastSocialSignUp extends Tag
 
     protected ?string $_plural = 'podcast_socialSignUps';
 
-    protected array $_allowedAttributes = ['homeUrl', 'signupUrl', 'priority'];
+    protected array $_allowedAttributes = ['homeUrl', 'signUpUrl', 'priority'];
 
     protected array $_requiredAttributes = ['homeUrl'];
 
-    protected array $_recommendedAttributes = ['signupUrl'];
+    protected array $_recommendedAttributes = ['signUpUrl'];
 
     protected array $_attributesValidationRules = [
         'homeUrl' => [Validator::ValidURL],

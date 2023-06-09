@@ -29,6 +29,7 @@ class PodcastLiveItem extends Item
     public function __construct(
         string $key,
         ?SimpleXMLElement $element,
+        // @phpstan-ignore-next-line
         private readonly array $_ascendants = []
     ) {
         $this->_allowedChildren = array_merge($this->_allowedChildren, [
