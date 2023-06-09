@@ -17,16 +17,4 @@ abstract class BaseCast implements CastInterface
     {
         return $value;
     }
-
-    /**
-     * Set
-     *
-     * @param array<mixed>|bool|float|int|object|string|null $value  Data
-     *
-     * @return array<mixed>|bool|float|int|object|string|null
-     */
-    public static function set($value)
-    {
-        return $value;
-    }
 }

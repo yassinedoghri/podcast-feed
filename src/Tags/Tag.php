@@ -231,7 +231,11 @@ abstract class Tag implements TagInterface
             if ($this->_childrenCount === 0) {
                 $rawValue = trim((string) $element);
                 $this->validate($rawValue);
-                $this->_value = $this->cast($rawValue, $this->_cast);
+
+                // only cast value if not empty string
+                if ($rawValue !== "") {
+                    $this->_value = $this->cast($rawValue, $this->_cast);
+                }
             }
 
             if ($element->attributes() instanceof SimpleXMLElement) {
@@ -239,7 +243,11 @@ abstract class Tag implements TagInterface
                 foreach ($attributes as $key => $element) {
                     $rawValue = trim((string) $element);
                     $this->validateAttribute($key, $rawValue);
-                    $this->_attributes[$key] = $this->cast($rawValue, $this->_attributesCast[$key] ?? Cast::String);
+
+                    // only cast attribute if not empty string
+                    if ($rawValue !== "") {
+                        $this->_attributes[$key] = $this->cast($rawValue, $this->_attributesCast[$key] ?? Cast::String);
+                    }
                 }
             }
 
