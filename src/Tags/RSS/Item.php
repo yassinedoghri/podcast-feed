@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PodcastFeed\Tags\RSS;
 
+use PodcastFeed\Tags\Atom\AtomContributor;
+use PodcastFeed\Tags\Atom\AtomLink;
 use PodcastFeed\Tags\Content\ContentEncoded;
 use PodcastFeed\Tags\Itunes\ItunesAuthor;
 use PodcastFeed\Tags\Itunes\ItunesBlock;
@@ -105,6 +107,8 @@ class Item extends Tag
         PodcastPerson::class,
         PodcastValue::class,
         PodcastImages::class,
+        AtomLink::class,
+        AtomContributor::class,
     ];
 
     protected array $_requiredChildren = [Title::class, Enclosure::class];

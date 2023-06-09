@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PodcastFeed\Tags\RSS;
 
+use PodcastFeed\Tags\Atom\AtomContributor;
 use PodcastFeed\Tags\Atom\AtomLink;
 use PodcastFeed\Tags\Itunes\ItunesAuthor;
 use PodcastFeed\Tags\Itunes\ItunesBlock;
@@ -91,6 +92,7 @@ class Channel extends Tag
 
     protected array $_allowedChildren = [
         AtomLink::class,
+        AtomContributor::class,
         Category::class,
         Cloud::class,
         Copyright::class,
