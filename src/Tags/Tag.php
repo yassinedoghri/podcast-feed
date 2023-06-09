@@ -205,7 +205,7 @@ abstract class Tag implements TagInterface
             $allowedChildrenNotPresent = array_diff($this->_allowedChildren, $this->_children);
 
             foreach ($allowedChildrenNotPresent as $tagClassName) {
-                $tagProperty = str_replace(':', '_', str_replace('-', '', lcfirst(ucwords($tagClassName::NAME, '-'))));
+                $tagProperty = str_replace(':', '_', str_replace('-', '', lcfirst(ucwords((string) $tagClassName::NAME, '-'))));
 
                 if (! class_exists($tagClassName)) {
                     $tagClassName = UnknownTag::class;
@@ -304,25 +304,26 @@ abstract class Tag implements TagInterface
 
     public function getAttribute(string $key, mixed $default = null): mixed
     {
-        if (in_array($key, $this->_attributes, true)) {
+        // check if requested attribute is allowed
+        if (! in_array($key, $this->_allowedAttributes, true)) {
+            throw new Exception('"' . $key . '" attribute is not allowed for ' . $this::NAME . ' tag.');
+        }
+
+        if (in_array($key, array_keys($this->_attributes), true)) {
             return $this->_attributes[$key];
         }
 
+        // return default value if set
         if ($default !== null) {
             return $default;
         }
 
-        // check if in allowed attributes
-        if (in_array($key, $this->_allowedAttributes, true)) {
-            // return default if present
-            if (in_array($key, array_keys($this->_attributesDefaultValues))) {
-                return $this->_attributesDefaultValues[$key];
-            }
-
-            return null;
+        // return default if present
+        if (in_array($key, array_keys($this->_attributesDefaultValues), true)) {
+            return $this->_attributesDefaultValues[$key];
         }
 
-        throw new Exception('"' . $key . '" attribute is not allowed for ' . $this::NAME . ' tag.');
+        return null;
     }
 
     /**
