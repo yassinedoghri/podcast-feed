@@ -16,15 +16,19 @@ class ItunesDuration extends Tag
 
     protected array $_validationRules = [Validator::NotEmpty, Validator::ValidDuration];
 
-    public function getSeconds(): float
+    public function getSeconds(): ?float
     {
+        if ($this->_value === null || ! is_string($this->_value)) {
+            return null;
+        }
+
         if (is_numeric($this->_value)) {
             return (float) $this->_value;
         }
 
         // adapted from https://stackoverflow.com/a/20874702/8926095
         $seconds = 0;
-        foreach (array_reverse(explode(':', (string) $this->_value)) as $key => $value) {
+        foreach (array_reverse(explode(':', $this->_value)) as $key => $value) {
             $seconds += 60 ** $key * (float) $value;
         }
 

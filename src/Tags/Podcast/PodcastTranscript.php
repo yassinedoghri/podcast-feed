@@ -33,6 +33,7 @@ class PodcastTranscript extends Tag
                 'application/srt',
                 'application/json',
                 'application/x-subrip',
+                'application/xml',
             ],
             ],
         ],

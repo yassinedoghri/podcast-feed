@@ -9,7 +9,7 @@ abstract class BaseCast implements CastInterface
     /**
      * Get
      *
-     * @param array<mixed>|bool|float|int|object|string|null $value  Data
+     * @param string $value  Data
      *
      * @return array<mixed>|bool|float|int|object|string|null
      */

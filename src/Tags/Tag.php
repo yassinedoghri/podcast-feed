@@ -185,7 +185,7 @@ abstract class Tag implements TagInterface
         if (array_key_exists($this::NAME, self::$_counts)) {
             ++self::$_counts[$this::NAME];
         } else {
-            self::$_counts[$this::NAME] = 1;
+            self::$_counts[(string) $this::NAME] = 1;
         }
 
         if ($this->_multiple) {
@@ -537,7 +537,7 @@ abstract class Tag implements TagInterface
     {
         foreach (array_keys($this->_attributes) as $attribute) {
             if (! in_array($attribute, $this->_allowedAttributes)) {
-                $this->error('"' . $attribute . '" is not allowed for ' . $this::NAME);
+                $this->error('"' . $attribute . '" attribute is not allowed for ' . $this::NAME);
             }
         }
 
