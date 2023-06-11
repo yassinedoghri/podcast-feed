@@ -24,7 +24,7 @@ class PodcastSoundbite extends Tag
 
     protected array $_attributesValidationRules = [
         'startTime' => [Validator::Numeric],
-        'duration' => [Validator::Numeric],
+        'duration'  => [Validator::Numeric],
     ];
 
     protected array $_validationRules = [[Validator::MaxLength, [128]]];

@@ -14,7 +14,7 @@ class DatetimeCast extends BaseCast
         $timestamp = strtotime($value);
 
         if (! $timestamp) {
-            throw new Exception("Could not cast $value to Datetime.");
+            throw new Exception("Could not cast {$value} to Datetime.");
         }
 
         $datetime = new DateTime();

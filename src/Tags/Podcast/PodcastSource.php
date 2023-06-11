@@ -22,7 +22,7 @@ class PodcastSource extends Tag
     protected array $_requiredAttributes = ['uri'];
 
     protected array $_attributesValidationRules = [
-        'uri' => [Validator::ValidURL],
+        'uri'         => [Validator::ValidURL],
         'contentType' => [Validator::ValidMimeType],
     ];
 }

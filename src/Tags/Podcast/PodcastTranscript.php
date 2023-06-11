@@ -23,7 +23,7 @@ class PodcastTranscript extends Tag
     protected array $_requiredAttributes = ['url', 'type'];
 
     protected array $_attributesValidationRules = [
-        'url' => [Validator::ValidURL],
+        'url'  => [Validator::ValidURL],
         'type' => [
             [Validator::InList, [
                 'text/plain',

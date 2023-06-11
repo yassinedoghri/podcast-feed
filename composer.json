@@ -17,14 +17,14 @@
         "ext-intl" : "*"
     },
     "require-dev": {
-        "kint-php/kint": "^5.0",
-        "phpstan/phpstan": "^1.10",
+        "kint-php/kint": "^5.0.5",
+        "phpstan/phpstan": "^1.10.18",
         "rector/rector": "^0.17.0",
-        "symplify/coding-standard": "^11.3",
-        "symplify/easy-coding-standard": "^11.3"
+        "symplify/coding-standard": "^11.3.0",
+        "symplify/easy-coding-standard": "^11.3.4"
     },
     "scripts": {
-        "dev": "php -S 0.0.0.0:8080",
+        "dev": "php -S 0.0.0.0:8000",
         "analyse": "vendor/bin/phpstan analyse --ansi",
         "rector": "vendor/bin/rector process --dry-run --ansi",
         "rector:fix": "vendor/bin/rector process --ansi",

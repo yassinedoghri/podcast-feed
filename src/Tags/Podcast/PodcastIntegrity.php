@@ -18,7 +18,7 @@ class PodcastIntegrity extends Tag
     protected array $_requiredAttributes = ['type', 'value'];
 
     protected array $_attributesValidationRules = [
-        'type' => [Validator::NotEmpty, [Validator::InList, ['sri', 'pgp-signature']]],
+        'type'  => [Validator::NotEmpty, [Validator::InList, ['sri', 'pgp-signature']]],
         'value' => [Validator::NotEmpty, Validator::ValidBase64],
     ];
 }

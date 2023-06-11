@@ -24,7 +24,7 @@ class PodcastRemoteItem extends Tag
 
     protected array $_attributesValidationRules = [
         'feedGuid' => [Validator::ValidUUIDv5],
-        'medium' => [
+        'medium'   => [
             [Validator::InList, ['podcast', 'music', 'video', 'film', 'audiobook', 'newsletter', 'blog']],
         ],
     ];

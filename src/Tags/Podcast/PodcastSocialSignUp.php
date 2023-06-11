@@ -24,8 +24,8 @@ class PodcastSocialSignUp extends Tag
     protected array $_recommendedAttributes = ['signUpUrl'];
 
     protected array $_attributesValidationRules = [
-        'homeUrl' => [Validator::ValidURL],
+        'homeUrl'   => [Validator::ValidURL],
         'signupUrl' => [Validator::ValidURL],
-        'priority' => [Validator::NaturalNoZero],
+        'priority'  => [Validator::NaturalNoZero],
     ];
 }

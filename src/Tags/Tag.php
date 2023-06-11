@@ -145,11 +145,11 @@ abstract class Tag implements TagInterface
      * @var array<string, class-string<BaseCast>>
      */
     private array $_defaultCastHandlers = [
-        'boolean' => BooleanCast::class,
-        'datetime' => DatetimeCast::class,
-        'float' => FloatCast::class,
-        'integer' => IntegerCast::class,
-        'string' => StringCast::class,
+        'boolean'   => BooleanCast::class,
+        'datetime'  => DatetimeCast::class,
+        'float'     => FloatCast::class,
+        'integer'   => IntegerCast::class,
+        'string'    => StringCast::class,
         'timestamp' => TimestampCast::class,
     ];
 
@@ -158,20 +158,20 @@ abstract class Tag implements TagInterface
      * @var array<string, class-string<ValidatorInterface>>
      */
     private array $_defaultValidationHandlers = [
-        'boolean' => Boolean::class,
-        'decimal_positive' => DecimalPositive::class,
-        'natural' => Natural::class,
-        'natural_no_zero' => NaturalNoZero::class,
-        'not_empty' => NotEmpty::class,
-        'numeric' => Numeric::class,
-        'in_list' => InList::class,
-        'max_length' => MaxLength::class,
+        'boolean'             => Boolean::class,
+        'decimal_positive'    => DecimalPositive::class,
+        'natural'             => Natural::class,
+        'natural_no_zero'     => NaturalNoZero::class,
+        'not_empty'           => NotEmpty::class,
+        'numeric'             => Numeric::class,
+        'in_list'             => InList::class,
+        'max_length'          => MaxLength::class,
         'valid_language_code' => ValidLanguageCode::class,
-        'valid_uuidv5' => ValidUUIDv5::class,
-        'valid_url' => ValidURL::class,
-        'valid_mime_type' => ValidMimeType::class,
-        'valid_datetime' => ValidDatetime::class,
-        'valid_duration' => ValidDuration::class,
+        'valid_uuidv5'        => ValidUUIDv5::class,
+        'valid_url'           => ValidURL::class,
+        'valid_mime_type'     => ValidMimeType::class,
+        'valid_datetime'      => ValidDatetime::class,
+        'valid_duration'      => ValidDuration::class,
     ];
 
     /**
@@ -205,7 +205,11 @@ abstract class Tag implements TagInterface
             $allowedChildrenNotPresent = array_diff($this->_allowedChildren, $this->_children);
 
             foreach ($allowedChildrenNotPresent as $tagClassName) {
-                $tagProperty = str_replace(':', '_', str_replace('-', '', lcfirst(ucwords((string) $tagClassName::NAME, '-'))));
+                $tagProperty = str_replace(
+                    ':',
+                    '_',
+                    str_replace('-', '', lcfirst(ucwords((string) $tagClassName::NAME, '-')))
+                );
 
                 if (! class_exists($tagClassName)) {
                     $tagClassName = UnknownTag::class;
@@ -219,7 +223,7 @@ abstract class Tag implements TagInterface
 
                 if ($tagObject->_multiple) {
                     if ($tagObject->_plural === null) {
-                        throw new Exception("_plural property is not set for: " . $tagClassName);
+                        throw new Exception('_plural property is not set for: ' . $tagClassName);
                     }
 
                     $this->{$tagObject->_plural} = [];
@@ -233,7 +237,7 @@ abstract class Tag implements TagInterface
                 $this->validate($rawValue);
 
                 // only cast value if not empty string
-                if ($rawValue !== "") {
+                if ($rawValue !== '') {
                     $this->_value = $this->cast($rawValue, $this->_cast);
                 }
             }
@@ -245,7 +249,7 @@ abstract class Tag implements TagInterface
                     $this->validateAttribute($key, $rawValue);
 
                     // only cast attribute if not empty string
-                    if ($rawValue !== "") {
+                    if ($rawValue !== '') {
                         $this->_attributes[$key] = $this->cast($rawValue, $this->_attributesCast[$key] ?? Cast::String);
                     }
                 }
@@ -254,30 +258,6 @@ abstract class Tag implements TagInterface
             $this->validateChildren();
             $this->validateAttributes();
         }
-    }
-
-    /**
-     * @return class-string<Tag>[]
-     */
-    protected function getAllowedParents(): array
-    {
-        return $this->_allowedParents;
-    }
-
-    /**
-     * @return class-string<Tag>[]
-     */
-    protected function getAllowedChildren(): array
-    {
-        return $this->_allowedChildren;
-    }
-
-    /**
-     * @return string[]
-     */
-    protected function getAllowedAttributes(): array
-    {
-        return $this->_allowedAttributes;
     }
 
     /**
@@ -342,37 +322,61 @@ abstract class Tag implements TagInterface
         return $parent;
     }
 
+    /**
+     * @return class-string<Tag>[]
+     */
+    protected function getAllowedParents(): array
+    {
+        return $this->_allowedParents;
+    }
+
+    /**
+     * @return class-string<Tag>[]
+     */
+    protected function getAllowedChildren(): array
+    {
+        return $this->_allowedChildren;
+    }
+
+    /**
+     * @return string[]
+     */
+    protected function getAllowedAttributes(): array
+    {
+        return $this->_allowedAttributes;
+    }
+
     private function traverse(SimpleXMLElement $node): void
     {
         $namespaces = [
             [
-                'node' => $node->children(),
-                'prefix' => null,
-                'folder' => 'RSS',
+                'node'        => $node->children(),
+                'prefix'      => null,
+                'folder'      => 'RSS',
                 'classPrefix' => '',
             ],
             [
-                'node' => $node->children('atom', true),
-                'prefix' => 'atom',
-                'folder' => 'Atom',
+                'node'        => $node->children('atom', true),
+                'prefix'      => 'atom',
+                'folder'      => 'Atom',
                 'classPrefix' => 'Atom',
             ],
             [
-                'node' => $node->children('content', true),
-                'prefix' => 'content',
-                'folder' => 'Content',
+                'node'        => $node->children('content', true),
+                'prefix'      => 'content',
+                'folder'      => 'Content',
                 'classPrefix' => 'Content',
             ],
             [
-                'node' => $node->children('itunes', true),
-                'prefix' => 'itunes',
-                'folder' => 'Itunes',
+                'node'        => $node->children('itunes', true),
+                'prefix'      => 'itunes',
+                'folder'      => 'Itunes',
                 'classPrefix' => 'Itunes',
             ],
             [
-                'node' => $node->children('podcast', true),
-                'prefix' => 'podcast',
-                'folder' => 'Podcast',
+                'node'        => $node->children('podcast', true),
+                'prefix'      => 'podcast',
+                'folder'      => 'Podcast',
                 'classPrefix' => 'Podcast',
             ],
         ];
@@ -408,7 +412,7 @@ abstract class Tag implements TagInterface
 
                 if ($tagObject->_multiple) {
                     if ($tagObject->_plural === null) {
-                        throw new Exception("_plural property is not set for: " . $tagClassName);
+                        throw new Exception('_plural property is not set for: ' . $tagClassName);
                     }
 
                     $this->{$tagObject->_plural}[$tagObject->_key] = $tagObject;
@@ -442,16 +446,16 @@ abstract class Tag implements TagInterface
 
         if (! in_array($message, [Error::AttributeEmpty, Error::AttributeMissing], true)) {
             return match ($message) {
-                Error::TagEmpty => '<' . $this::NAME . '> tag is empty.',
-                Error::TagMissing => '<' . $this::NAME . '> tag is missing.',
+                Error::TagEmpty          => '<' . $this::NAME . '> tag is empty.',
+                Error::TagMissing        => '<' . $this::NAME . '> tag is missing.',
                 Error::TagNotImplemented => '<' . $this::NAME . '> tag not implemented.',
-                Error::UnknownTag => '<' . $this::NAME . '> is unknown.'
+                Error::UnknownTag        => '<' . $this::NAME . '> is unknown.'
             };
         }
 
         if ($attribute !== null) {
             return match ($message) {
-                Error::AttributeEmpty => '"' . $attribute . '" attribute is empty for tag <' . $this::NAME . '>.',
+                Error::AttributeEmpty   => '"' . $attribute . '" attribute is empty for tag <' . $this::NAME . '>.',
                 Error::AttributeMissing => '"' . $attribute . '" attribute is missing for tag <' . $this::NAME . '>.',
             };
         }
@@ -544,19 +548,19 @@ abstract class Tag implements TagInterface
     private function validateAttributes(): void
     {
         foreach (array_keys($this->_attributes) as $attribute) {
-            if (! in_array($attribute, $this->_allowedAttributes)) {
+            if (! in_array($attribute, $this->_allowedAttributes, true)) {
                 $this->error('"' . $attribute . '" attribute is not allowed for ' . $this::NAME);
             }
         }
 
         foreach ($this->_requiredAttributes as $requiredAttribute) {
-            if (! in_array($requiredAttribute, array_keys($this->_attributes))) {
+            if (! in_array($requiredAttribute, array_keys($this->_attributes), true)) {
                 $this->error('Missing required attribute "' . $requiredAttribute . '" for ' . $this::NAME);
             }
         }
 
         foreach ($this->_recommendedAttributes as $recommendedAttribute) {
-            if (! in_array($recommendedAttribute, array_keys($this->_attributes))) {
+            if (! in_array($recommendedAttribute, array_keys($this->_attributes), true)) {
                 $this->warn('"' . $recommendedAttribute . '" is recommended as an attribute of ' . $this::NAME);
             }
         }
@@ -570,12 +574,12 @@ abstract class Tag implements TagInterface
     {
         // use this to force the load of the classes
         if (! class_exists($tagClass1)) {
-            throw new Exception("Class $tagClass1 not found");
+            throw new Exception("Class {$tagClass1} not found");
         }
 
         // use this to force the load of the classes
         if (! class_exists($tagClass2)) {
-            throw new Exception("Class $tagClass2 not found");
+            throw new Exception("Class {$tagClass2} not found");
         }
 
         if ($tagClass1 === $tagClass2) {

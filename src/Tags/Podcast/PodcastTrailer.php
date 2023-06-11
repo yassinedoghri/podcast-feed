@@ -25,10 +25,10 @@ class PodcastTrailer extends Tag
     protected array $_recommendedAttributes = ['length', 'type'];
 
     protected array $_attributesValidationRules = [
-        'url' => [Validator::ValidURL],
+        'url'     => [Validator::ValidURL],
         'pubdate' => [Validator::ValidDatetime],
-        'length' => [Validator::Natural],
-        'type' => [Validator::ValidMimeType],
-        'season' => [Validator::Natural],
+        'length'  => [Validator::Natural],
+        'type'    => [Validator::ValidMimeType],
+        'season'  => [Validator::Natural],
     ];
 }

@@ -28,8 +28,8 @@ class PodcastSocialInteract extends Tag
         'uri' => [Validator::ValidURL],
         // from podcastindex https://github.com/Podcastindex-org/podcast-namespace/blob/main/socialprotocols.txt
         // TODO: get them when building library?
-        'protocol' => [[Validator::InList, ['disabled', 'activitypub', 'twitter', 'lightning']]],
+        'protocol'   => [[Validator::InList, ['disabled', 'activitypub', 'twitter', 'lightning']]],
         'accountUrl' => [Validator::ValidURL],
-        'priority' => [Validator::NaturalNoZero],
+        'priority'   => [Validator::NaturalNoZero],
     ];
 }
