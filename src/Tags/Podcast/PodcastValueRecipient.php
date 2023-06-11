@@ -24,9 +24,9 @@ class PodcastValueRecipient extends Tag
     protected array $_recommendedAttributes = ['name'];
 
     protected array $_attributesValidationRules = [
-        'type' => [Validator::NotEmpty],
+        'type'    => [Validator::NotEmpty],
         'address' => [Validator::NotEmpty],
-        'split' => [Validator::NotEmpty],
-        'fee' => [Validator::Boolean],
+        'split'   => [Validator::NotEmpty],
+        'fee'     => [Validator::Boolean],
     ];
 }

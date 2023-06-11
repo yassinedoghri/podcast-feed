@@ -22,8 +22,8 @@ class PodcastLiveItem extends Item
 
     protected array $_attributesValidationRules = [
         'status' => [Validator::NotEmpty, [Validator::InList, ['pending', 'live', 'ended']]],
-        'start' => [Validator::NotEmpty, Validator::ValidDatetime],
-        'end' => [Validator::NotEmpty, Validator::ValidDatetime],
+        'start'  => [Validator::NotEmpty, Validator::ValidDatetime],
+        'end'    => [Validator::NotEmpty, Validator::ValidDatetime],
     ];
 
     public function __construct(
@@ -37,9 +37,7 @@ class PodcastLiveItem extends Item
             PodcastAlternateEnclosure::class,
         ]);
 
-        $this->_requiredChildren = array_merge($this->_requiredChildren, [
-            PodcastContentLink::class,
-        ]);
+        $this->_requiredChildren = array_merge($this->_requiredChildren, [PodcastContentLink::class]);
 
         $this->_recommendedChildren = array_merge($this->_recommendedChildren, [
             PodcastAlternateEnclosure::class,

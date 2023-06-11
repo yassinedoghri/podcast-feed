@@ -32,8 +32,8 @@ class PodcastValue extends Tag
     protected array $_requiredAttributes = ['type', 'method'];
 
     protected array $_attributesValidationRules = [
-        'type' => [Validator::NotEmpty],
-        'method' => [Validator::NotEmpty],
+        'type'      => [Validator::NotEmpty],
+        'method'    => [Validator::NotEmpty],
         'suggested' => [Validator::DecimalPositive],
     ];
 }

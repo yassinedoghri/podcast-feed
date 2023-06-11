@@ -27,9 +27,9 @@ class PodcastValueTimeSplit extends Tag
     protected array $_requiredAttributes = ['startTime', 'duration', 'remotePercentage'];
 
     protected array $_attributesValidationRules = [
-        'type' => [Validator::NotEmpty],
+        'type'    => [Validator::NotEmpty],
         'address' => [Validator::NotEmpty],
-        'split' => [Validator::NotEmpty],
-        'fee' => [Validator::Boolean],
+        'split'   => [Validator::NotEmpty],
+        'fee'     => [Validator::Boolean],
     ];
 }

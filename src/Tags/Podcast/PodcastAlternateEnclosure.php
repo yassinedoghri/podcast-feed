@@ -39,11 +39,11 @@ class PodcastAlternateEnclosure extends Tag
     protected array $_recommendedAttributes = ['length'];
 
     protected array $_attributesValidationRules = [
-        'type' => [Validator::ValidMimeType],
-        'length' => [Validator::Natural],
+        'type'    => [Validator::ValidMimeType],
+        'length'  => [Validator::Natural],
         'bitrate' => [Validator::Natural],
-        'height' => [Validator::Natural],
-        'lang' => [Validator::ValidIETFLanguageCode],
+        'height'  => [Validator::Natural],
+        'lang'    => [Validator::ValidIETFLanguageCode],
         'default' => [Validator::Boolean],
     ];
 
