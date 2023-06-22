@@ -26,6 +26,7 @@ use PodcastFeed\Tags\Podcast\PodcastLocation;
 use PodcastFeed\Tags\Podcast\PodcastPerson;
 use PodcastFeed\Tags\Podcast\PodcastSocialInteract;
 use PodcastFeed\Tags\Podcast\PodcastTranscript;
+use PodcastFeed\Tags\Podcast\PodcastTxt;
 use PodcastFeed\Tags\Podcast\PodcastValue;
 use PodcastFeed\Tags\Tag;
 
@@ -107,6 +108,7 @@ class Item extends Tag
         PodcastPerson::class,
         PodcastValue::class,
         PodcastImages::class,
+        PodcastTxt::class,
         AtomLink::class,
         AtomContributor::class,
     ];
