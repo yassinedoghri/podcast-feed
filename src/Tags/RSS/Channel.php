@@ -31,6 +31,7 @@ use PodcastFeed\Tags\Podcast\PodcastMedium;
 use PodcastFeed\Tags\Podcast\PodcastPerson;
 use PodcastFeed\Tags\Podcast\PodcastPreviousUrl;
 use PodcastFeed\Tags\Podcast\PodcastSocial;
+use PodcastFeed\Tags\Podcast\PodcastTxt;
 use PodcastFeed\Tags\Podcast\PodcastValue;
 use PodcastFeed\Tags\Tag;
 
@@ -130,6 +131,7 @@ class Channel extends Tag
         PodcastPerson::class,
         PodcastPreviousUrl::class,
         PodcastSocial::class,
+        PodcastTxt::class,
         PodcastValue::class,
         PubDate::class,
         Rating::class,
