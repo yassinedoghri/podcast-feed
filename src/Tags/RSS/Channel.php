@@ -63,11 +63,9 @@ use PodcastFeed\Tags\Tag;
  * @property PodcastBlock $podcast_block
  * @property PodcastComplete $podcast_complete
  * @property PodcastGuid $podcast_guid
- * @property PodcastId $podcast_id
  * @property PodcastLocation $podcast_location
  * @property PodcastLocked $podcast_locked
  * @property PodcastPreviousUrl $podcast_previousUrl
- * @property PodcastSocial $podcast_social
  * @property PodcastValue $podcast_value
  * @property PubDate $pub_date
  * @property Rating $rating
@@ -84,6 +82,8 @@ use PodcastFeed\Tags\Tag;
  * @property PodcastLiveItem[] $podcast_liveItems
  * @property PodcastFunding[] $podcast_fundings
  * @property PodcastPerson[] $podcast_persons
+ * @property PodcastId[] $podcast_ids
+ * @property PodcastSocial[] $podcast_socials
  */
 class Channel extends Tag
 {
